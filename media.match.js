@@ -1,6 +1,6 @@
 /*! MediaMatch v.2.0.3 - Testing css media queries in Javascript. Authors & copyright (c) 2013: WebLinc, David Knight. */
 
-window.matchMedia || (window.matchMedia = function (win) {
+var _createMediaMatch = function (win) {
     'use strict';
 
     // Internal globals
@@ -322,4 +322,14 @@ window.matchMedia || (window.matchMedia = function (win) {
 
         return mql;
     };
-}(window));
+};
+
+if (typeof module !== 'undefined' && typeof module.exports !== 'undefined') {
+    module.exports = _createMediaMatch;
+    exports['default'] = module.exports.default = _createMediaMatch;
+}
+
+/* istanbul ignore next */
+if (typeof window !== 'undefined' && !window.mediaMatch) {
+    window.mediaMatch = _createMediaMatch(window);
+}
